@@ -75,7 +75,7 @@ sessoes(session)= sao criados e armazenados no servidor. sao arquivos que contem
     <div class="main-login">
         <div class="left-login">
             <h1>Faça login <br> E tenha acesso aos seus serviços</h1>
-            <img src="img/codeInJS.svg" alt="" class="image-login">
+            <img src="img/login.jpg" alt="" class="image-login">
         </div>
         <form action="index.php" method="post">
         <div class="rigth-login">

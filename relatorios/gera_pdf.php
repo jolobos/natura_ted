@@ -57,8 +57,8 @@ $texto=date_format(new DateTime($data), "d/m/Y H:i:s");
 $doc-> Cell(0,12,"Comprovante de Venda",0,1,"C");
 $doc->SetFont('arial','bi',12);
 $doc-> Cell(0,8,"data: ".date_format(new DateTime($data), "d/m/Y H:i:s")."",0,1,"L");
-$doc-> Cell(0,8,"Vendedor: ".utf8_decode($user)."",0,1,"L");
-$doc-> Cell(0,8,'Cliente: '.utf8_decode($cliente).' CPF: '.$CPF,0,1,"L");
+$doc-> Cell(0,8,"Vendedor: ".$user."",0,1,"L");
+$doc-> Cell(0,8,'Cliente: '.$cliente.' CPF: '.$CPF,0,1,"L");
 
 $doc->Cell(0,0,'',1,1,'L');
 $doc-> Cell(0,10,"Produtos Vendidos ",0,1,"C");
@@ -113,7 +113,7 @@ while($dados_it= $consultav->fetch(PDO::FETCH_ASSOC)){
 	$doc->ln();	
    	$doc->Cell(40, 10, $d_pr['cod_prod']); 
     $doc->SetX(40);
-    $doc->Cell(40, 10,utf8_decode($d_pr['produto'])); 
+    $doc->Cell(40, 10,$d_pr['produto']); 
     $doc->SetX(125);
     $doc->Cell(40, 10,$quantidade);  
     $doc->SetX(145);
@@ -134,7 +134,7 @@ $doc->SetFont('arial','',12);
 $doc->Cell(0,0,'',1,1,'L');
 $doc->Cell(0,5,$cont,0,0,'L');
 $doc->Cell(0,5,$texto,0,1,'R');
-$doc->Output("".utf8_decode($cliente)." ".date_format(new DateTime($data), "d/m/Y H:i:s").".pdf","I");
+$doc->Output("".$cliente." ".date_format(new DateTime($data), "d/m/Y H:i:s").".pdf","I");
 
 }
 

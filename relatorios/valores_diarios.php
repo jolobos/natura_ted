@@ -9,16 +9,18 @@ $nivel=1;
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<title>Relatórios de Vendas</title>
-
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/style.css" rel="stylesheet">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
+  <meta charset="utf-8">
+  <title>Relatório de vendas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript" src="func_rl.js"></script>
 	</head>
 <body>
@@ -54,14 +56,14 @@ if(empty($_POST['dt_inicio']) or empty($_POST['dt_final'])){
 	$dt_inicio = $_POST['dt_inicio'];
 	$dt_final = $_POST['dt_final'];
 	
-	$sql = "SELECT * FROM vendas WHERE data_periodo BETWEEN '".$dt_inicio."' and '".$dt_final."'";
-$consulta = $conexao->query($sql);
+	$sql = "SELECT * FROM vendas WHERE data BETWEEN '".$dt_inicio."' and '".$dt_final."'";
+        $consulta = $conexao->query($sql);
 
-$lr2 = $consulta->fetchALL(PDO::FETCH_ASSOC);
+        $lr2 = $consulta->fetchALL(PDO::FETCH_ASSOC);
 
 if(empty($lr2)){
-	echo '<table width="500" border="1">
-<tr><th align="center" class="alert-success">Vendas de '.date_format(new DateTime($dt_inicio), "d/m/Y").' até '.date_format(new DateTime($dt_final), "d/m/Y").'</th></tr>
+echo'	<table  border="3" class="table table-striped">
+<tr><th class="bg-dark text-white-50 text-center">Vendas de '.date_format(new DateTime($dt_inicio), "d/m/Y").' até '.date_format(new DateTime($dt_final), "d/m/Y").'</th></tr>
 <tr><th align="center" class="alert-danger">Nenhuma venda efetuada nesse periodo</th></tr>
 </table>
 ';
@@ -69,8 +71,8 @@ if(empty($lr2)){
 	
 }else{
 	
-echo'	<table  border="1" align="center">
-<tr><th align="center" class="alert-success" colspan="5">valores arrecadados !!!!</th></tr>
+echo'	<table  border="3" class="table table-striped">
+<tr><th class="bg-dark text-white-50 text-center" colspan="5">Valores Arrecadados !!!!</th></tr>
 <tr>
     
     <th scope="col">datas pesquisadas </th>
@@ -80,7 +82,7 @@ echo'	<table  border="1" align="center">
     <th scope="col">percentual acumulado</th>
 
 </tr>';
-	$sql = "SELECT data,data_periodo,SUM(total) AS q FROM vendas WHERE data_periodo BETWEEN '".$dt_inicio."' and '".$dt_final."' GROUP BY data_periodo ";
+	$sql = "SELECT data,SUM(total) AS q FROM vendas WHERE data BETWEEN '".$dt_inicio."' and '".$dt_final."' GROUP BY data ";
 $consulta = $conexao->prepare($sql);
 $consulta->execute(array());
 $lr1 = $consulta->fetchALL(PDO::FETCH_ASSOC);
@@ -98,11 +100,11 @@ foreach($lr1 as $l){
 	$vl_ss = $l['q']/$vl_somado1;
 	$vl_perc = $vl_ss * 100;
 	$vl_perc_ac += $vl_perc;
-	echo '<tr><td align="center">'.date_format(new DateTime($l['data_periodo']), "d/m/Y").'</td>
-	<td align="center">$ '.$l['q'].'</td>
-	<td align="center">$ '.$vl_somado.'</td>
-		<td align="center">'.number_format($vl_perc,2).'%</td>
-		<td align="center">'.number_format($vl_perc_ac,2).'%</td></tr>';
+	echo '<tr><td>'.date_format(new DateTime($l['data']), "d/m/Y").'</td>
+	<td >$ '.$l['q'].'</td>
+	<td >$ '.$vl_somado.'</td>
+		<td >'.number_format($vl_perc,2).'%</td>
+		<td >'.number_format($vl_perc_ac,2).'%</td></tr>';
 	
 }
 
