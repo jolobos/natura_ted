@@ -1,7 +1,7 @@
 
 <?php
 
-require_once('../relatorios/vendor/autoload.php');
+require_once('pdf/fpdf.php');
 require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
@@ -55,15 +55,15 @@ $doc->SetFont('arial','bi',20);
 $cont="Criado por Josias Santos";
 $texto=date_format(new DateTime($data), "d/m/Y H:i:s");
 $doc-> Cell(0,12,"Comprovante de Venda",0,1,"C");
-$doc-> Cell(0,10,"data: ".date_format(new DateTime($data), "d/m/Y H:i:s")."",0,1,"L");
-$doc-> Cell(0,10,"Vendedor: ".utf8_decode($user)."",0,1,"L");
-$doc-> Cell(0,10,'Cliente: '.utf8_decode($cliente).' CPF: '.$CPF,0,1,"L");
+$doc->SetFont('arial','bi',12);
+$doc-> Cell(0,8,"data: ".date_format(new DateTime($data), "d/m/Y H:i:s")."",0,1,"L");
+$doc-> Cell(0,8,"Vendedor: ".utf8_decode($user)."",0,1,"L");
+$doc-> Cell(0,8,'Cliente: '.utf8_decode($cliente).' CPF: '.$CPF,0,1,"L");
 
 $doc->Cell(0,0,'',1,1,'L');
 $doc-> Cell(0,10,"Produtos Vendidos ",0,1,"C");
 
-$doc->Cell(0,0,"",0,1,"L");
-$doc->Cell(0,7,"",0,1,"L");
+$doc->Cell(0,3,"",0,1,"L");
 
 
 $doc-> SetFont('Arial','',12);
@@ -72,18 +72,15 @@ $doc->ln();
 $doc->Cell(40,7,'cod. prd.');
 $doc->SetX(40);
 $doc->Cell(40,7,'produto');
-$doc->SetX(75);
+$doc->SetX(120);
 $doc->Cell(40,7,'quantidade');
-$doc->SetX(115);
-$doc->Cell(40,7,'valor un.');
 $doc->SetX(145);
-$doc->Cell(40,7,'');
-$doc->SetX(165);
-$doc->Cell(40,7,'');
-$doc->SetX(160);
+$doc->Cell(40,7,'valor unid.');
+$doc->SetX(170);
 $doc->Cell(40,7,'valor somado');
 $doc->SetX("0");
 $doc->ln();
+
 
 $doc->Cell(0,0,'',1,1,'L');
 $doc->ln();
@@ -117,14 +114,12 @@ while($dados_it= $consultav->fetch(PDO::FETCH_ASSOC)){
    	$doc->Cell(40, 10, $d_pr['cod_prod']); 
     $doc->SetX(40);
     $doc->Cell(40, 10,utf8_decode($d_pr['produto'])); 
-    $doc->SetX(75);
+    $doc->SetX(125);
     $doc->Cell(40, 10,$quantidade);  
-    $doc->SetX(115);
-    $doc->Cell(40, 10, $d_pr['valor']);   
     $doc->SetX(145);
-    $doc->Cell(40, 10, '');  
-    $doc->SetX(165);
-    $doc->Cell(40, 10, $v_somado);  
+    $doc->Cell(40, 10,'R$ '. number_format($d_pr['valor'],2,'.',','));   
+    $doc->SetX(170);
+    $doc->Cell(40, 10,'R$ '. number_format($v_somado,2,'.',','));  
     $doc->SetX(160);
 }
 $doc->SetY("21");
@@ -132,7 +127,8 @@ $doc->SetX("30");
 $doc->SetY("250");
 $doc->Cell(0,0,'',1,1,'L');
 $doc->Cell(0,10,'Total:',0,0,'L');
-$doc->Cell(0,10,'$ '.$total,0,1,'R');
+$total = (float) $total;
+$doc->Cell(0,10,'R$ '.number_format($total,2,'.',',') ,0,1,'R');
 $doc->SetY("270");
 $doc->SetFont('arial','',12);
 $doc->Cell(0,0,'',1,1,'L');
