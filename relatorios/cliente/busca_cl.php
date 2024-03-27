@@ -10,7 +10,7 @@ $lr1 = $consulta->fetchALL(PDO::FETCH_ASSOC);
 
  echo '
  
- <table class = "table-striped" border="1">';
+ <table class = " table table-striped" border="3">';
   echo '<thead>';
   echo '<tr>';
   

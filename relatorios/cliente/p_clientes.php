@@ -21,70 +21,78 @@ $nivel=1;
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="func_cl.js"></script>
-
-</head>
+	</head>
 <body>
 
 <div class="container">
 
-<h1 class="text-info">Relatório de Compra dos Clientes</h1>
+<h1 class="text-info">Relatórios de Vendas</h1>
 
 <a href="../../tela_principal.php" class="btn btn-danger">Tela principal</a>
 <a href="../../sair.php" class="btn btn-danger">Sair</a>
-<a href="../index.php" class="btn btn-danger">voltar</a>
-<a href="top10dia.php" class="btn btn-warning">Ranking diario</a>
-<a href="top10mes.php" class="btn btn-warning">Ranking mensal</a>
-<a href="top10ano.php" class="btn btn-warning">Ranking anual</a>
-<a href="ac_ano.php" class="btn btn-primary">acumulado por ano</a>
-<a href="ac_mes.php" class="btn btn-primary">acumulado por mes</a></br></br>
-<a href="ac_dia.php" class="btn btn-primary">acumulado por dia</a>
-
+<a href="../cliente/clientes.php" class="btn btn-danger">Voltar</a>
 </br>
 </br>
+<div>
 
-<h3 class="text-primary"> Selecione um cliente:</h3>
-<p>Buscar: 
-<input type="text" id="busca"  onKeyUp="buscar_cliente(this.value)" /></p>
+<h3 class="text-info">Resultado:</h3>
 </br>
-<div id="resultado">
+
+<?php 
 
 
 
 
-
-<?php
-$sql1 = "SELECT * FROM clientes ";
-		$consulta = $conexao->query($sql1);
+	if(!empty($_POST['id_clientes'])){
+		$id_cliente = $_POST['id_clientes'];
+		$sql = "SELECT * FROM vendas WHERE id_cliente = ?";
+		$consulta = $conexao->prepare($sql);
+		$consulta->execute(array($id_cliente));
+		$lr200 = $consulta->fetch(PDO::FETCH_ASSOC);
 		
-		
-		
-		  echo '<table class = "table table-striped" border="3">';
-  echo '<thead>';
-  echo '<tr>';
-  
-  echo '<th>Clientes</th><th>CPF</th><th>Açoes</th>';
-  
-  echo '</tr>';
-  echo '</thead>';
-  echo '<tbody>';
-  
-while($dados = $consulta->fetch(PDO::FETCH_ASSOC)){
-	  
-	   echo '<tr><td>'.$dados['nome'].'</td><td>'.$dados['CPF'].'</td><td>	
-      <form action="p_clientes.php" method="post">
-	  <input type="hidden" name="id_clientes" value="'.$dados['id_clientes'].'"/>
-	  <input type="submit" class="btn btn-success" value="Pesquisar"/></form></td></tr>';
-  }
-  
-  echo '</tbody>';
-   echo '</table>' ;
-  echo $dados['id_clientes'];
+if(empty($lr200)){
+			echo '<a class="alert alert-danger">nenhuma compra feita por esse cliente!</a>';
+}else{
+echo '
+<h3 class="text-primary">Vendas de por cliente</h3>
+<table  border="3" class="table table-striped">
+<tr><th class="text-center bg-dark text-white-50" colspan="2">Compra feitas pelo cliente!!!!</th></tr>
+<tr>
+    <th scope="col">Nome do cliente</th>
+    <th scope="col">numero de compras no ano</th>
+    
+    
+</tr>';
 
+	
+	
+	
+	$sql = "SELECT id_cliente, COUNT(id_cliente) AS q FROM vendas WHERE id_cliente = '".$id_cliente."'";
+	$consulta = $conexao->prepare($sql);
+	$consulta->execute(array());
+	$lr2 = $consulta->fetchALL(PDO::FETCH_ASSOC);
+	
+	foreach($lr2 as $l){
+			
+		$sql4 = "SELECT * FROM clientes WHERE id_clientes = ? ";
+		$consulta4 = $conexao->prepare($sql4);
+        $consulta4->execute(array($l['id_cliente']));
+		$dados_us = $consulta4->fetch(PDO::FETCH_ASSOC);
+	if($l['q'] >0){	
+	
+	echo '<tr><td>'.$dados_us['nome'].'</td><td>'.$l['q'].'</td></tr>'	;
+	}
+	
+	}
+	echo '</table>';
+
+}}
 
 ?>
+
 </div>
-</div><div class="container"><hr/>
+</div>
+<div class="container"><hr/>
 <div class= "foot well">
 		<P>&copy; 2016 -Josias Santos de Azevedo </P>
 			

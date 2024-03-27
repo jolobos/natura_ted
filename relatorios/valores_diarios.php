@@ -56,7 +56,7 @@ if(empty($_POST['dt_inicio']) or empty($_POST['dt_final'])){
 	$dt_inicio = $_POST['dt_inicio'];
 	$dt_final = $_POST['dt_final'];
 	
-	$sql = "SELECT * FROM vendas WHERE data BETWEEN '".$dt_inicio."' and '".$dt_final."'";
+	$sql = "SELECT * FROM vendas WHERE data_periodo BETWEEN '".$dt_inicio."' and '".$dt_final."'";
         $consulta = $conexao->query($sql);
 
         $lr2 = $consulta->fetchALL(PDO::FETCH_ASSOC);
@@ -82,7 +82,7 @@ echo'	<table  border="3" class="table table-striped">
     <th scope="col">percentual acumulado</th>
 
 </tr>';
-	$sql = "SELECT data,SUM(total) AS q FROM vendas WHERE data BETWEEN '".$dt_inicio."' and '".$dt_final."' GROUP BY data ";
+$sql = "SELECT data,data_periodo,SUM(total) AS q FROM vendas WHERE data_periodo BETWEEN '".$dt_inicio."' and '".$dt_final."' GROUP BY data ";
 $consulta = $conexao->prepare($sql);
 $consulta->execute(array());
 $lr1 = $consulta->fetchALL(PDO::FETCH_ASSOC);
@@ -93,7 +93,6 @@ $vl_perc = 0;
 $vl_perc_ac=0;
 foreach($lr1 as $l1){
 	$vl_somado1 += $l1['q'];
-	
 }
 foreach($lr1 as $l){
 	$vl_somado += $l['q'];

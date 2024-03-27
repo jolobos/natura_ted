@@ -54,9 +54,9 @@ $nivel=1;
 </select>
 <select name="ano" class="label-success">
 <option value="">ANO</option>
-<option value="2015">2015</option>
-<option value="2016">2016</option>
-<option value="2017">2017</option>
+<option value="2023">2023</option>
+<option value="2024">2024</option>
+<option value="2025">2025</option>
 </select>
 <input type="submit" class="btn btn-success" value="pesquisar"/>
 </form>
@@ -72,7 +72,7 @@ if(empty($_POST['ano'])){
 	$mes = $_POST['mes'];
 	$ano = $_POST['ano'];
 	if(empty($mes)){
-		$dt_inicio = date_format(new DateTime($ano."-01-01"), "Y/m/d H:i:s");
+	$dt_inicio = date_format(new DateTime($ano."-01-01"), "Y/m/d H:i:s");
 	$dt_final = date_format(new DateTime($ano."-12-31"), "Y/m/d H:i:s");
 	
 	}else{
@@ -85,8 +85,8 @@ $consulta = $conexao->query($sql);
 $lr2 = $consulta->fetchALL(PDO::FETCH_ASSOC);
 
 if(empty($lr2)){
-	echo '<table width="500" border="1">
-<tr><th align="center" class="alert-success">Vendas de '.date_format(new DateTime($dt_inicio), "d/m/Y").' até '.date_format(new DateTime($dt_final), "d/m/Y").'</th></tr>
+echo'	<table  border="3" class="table table-striped">
+<tr><th class="bg-dark text-white-50 text-center">Vendas de '.date_format(new DateTime($dt_inicio), "d/m/Y").' até '.date_format(new DateTime($dt_final), "d/m/Y").'</th></tr>
 <tr><th align="center" class="alert-danger">Nenhuma venda efetuada nesse periodo</th></tr>
 </table>
 ';
@@ -94,8 +94,8 @@ if(empty($lr2)){
 	
 }else{
 	
-echo'	<table  border="1" align="center">
-<tr><th align="center" class="alert-success" colspan="5">valores arrecadados !!!!</th></tr>
+echo'	<table  border="3" class="table table-striped">
+<tr><th  class="bg-dark text-white-50 text-center" colspan="5">valores arrecadados !!!!</th></tr>
 <tr>
     
     <th scope="col">datas pesquisadas </th>
@@ -123,11 +123,11 @@ foreach($lr1 as $l){
 	$vl_ss = $l['q']/$vl_somado1;
 	$vl_perc = $vl_ss * 100;
 	$vl_perc_ac += $vl_perc;
-	echo '<tr><td align="center">'.date_format(new DateTime($l['data_periodo']), "d/m/Y").'</td>
-	<td align="center">$ '.$l['q'].'</td>
-	<td align="center">$ '.$vl_somado.'</td>
-		<td align="center">'.number_format($vl_perc,2).'%</td>
-		<td align="center">'.number_format($vl_perc_ac,2).'%</td></tr>';
+	echo '<tr><td >'.date_format(new DateTime($l['data_periodo']), "d/m/Y").'</td>
+	<td>$ '.$l['q'].'</td>
+	<td>$ '.$vl_somado.'</td>
+	<td>'.number_format($vl_perc,2).'%</td>
+	<td>'.number_format($vl_perc_ac,2).'%</td></tr>';
 	
 }
 
