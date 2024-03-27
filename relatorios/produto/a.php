@@ -4,7 +4,7 @@ $nivel=1;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="utf-8">
   <title>Relatorios!</title>
@@ -12,29 +12,11 @@ $nivel=1;
   <meta name="description" content="">
   <meta name="author" content="">
 
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
-	
-	<link href="../../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/style.css" rel="stylesheet">
-
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
-
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="../img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="../img/favicon.png">
-  
-	<script type="text/javascript" src="../../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../../js/scripts.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -57,7 +39,7 @@ FROM itens_venda iv
 left join produtos p
 on p.id_produto = iv.id_produto
 WHERE data_prod BETWEEN '".$dt_inicio."' and '".$dt_final."'
-GROUP BY iv.id_produto ORDER BY r DESC";
+GROUP BY iv.id_produto ORDER BY r DESC LIMIT 0,10";
 		$consulta1 = $conexao->prepare($sql1);
 		$consulta1->execute();
 		$d = $consulta1->fetchAll(PDO::FETCH_ASSOC);
@@ -120,8 +102,8 @@ foreach($d as $l1){
 			
 	
 </div>
-<script src="../js/raphael.js" type="text/javascript"></script>
-<script src="../js/morris.js" type="text/javascript"></script>
+<script src="../../js/raphael.js" type="text/javascript"></script>
+<script src="../../js/morris.js" type="text/javascript"></script>
 <script type="text/javascript">
 var dados= <?php echo $dataText2; ?>;
 new Morris.Bar({

@@ -10,7 +10,7 @@ $consulta = $conexao->query($sql);
 
  echo '
  
- <table class = "table-striped" border="1">';
+ <table  border="3" class="table table-striped" style="width: 500px;margin:auto;">';
   echo '<thead>';
   echo '<tr>';
   

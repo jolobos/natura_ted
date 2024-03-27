@@ -34,8 +34,13 @@ $nivel=1;
 </br>
 <div>
 <form action="top10dia.php" method="post">
-<input type="date" name="data_d" />
+    <div class="row">
+        <div class="col-sm-2">
+<input type="date" name="data_d" class="form-control"/>
+        </div>
+        <div class="col">
 <input type="submit" class="btn btn-success" value="pesquisar"/>
+        </div></div>
 </form>
 
 <h3 class="text-info">Resultado:</h3>

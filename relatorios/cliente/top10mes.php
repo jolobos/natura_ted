@@ -9,18 +9,18 @@ $nivel=1;
 ?>
 
 <!DOCTYPE html>
-<html>
+
+<html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<title>Relatórios de Vendas</title>
-
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/style.css" rel="stylesheet">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
-
-	</head>
+  <meta charset="utf-8">
+  <title>Relatório de vendas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    </head>
 <body>
 
 <div class="container">
@@ -34,7 +34,9 @@ $nivel=1;
 </br>
 <div>
 <form action="top10mes.php" method="post">
-<select name="mes" class="label-success">
+    <div class="row">
+    <div class="col-sm-2">
+<select name="mes" class="label-success form-control">
 <option value="" >MES</option>
 <option value="01">janeiro</option>
 <option value="02">fevereiro</option>
@@ -48,15 +50,19 @@ $nivel=1;
 <option value="10">outubro</option>
 <option value="11">novembro</option>
 <option value="12">dezembro</option>
-</select>
+</select></div>
+    <div class="col-sm-1">
 
-<select name="ano" class="label-success">
+<select name="ano" class="label-success form-control ">
 <option value="">ANO</option>
-<option value="2015">2015</option>
-<option value="2016">2016</option>
-<option value="2017">2017</option>
-</select>
+<option value="2023">2023</option>
+<option value="2024">2024</option>
+<option value="2025">2025</option>
+</select> 
+       </div> <div class="col-sm-2">
+
 <input type="submit" class="btn btn-success" value="pesquisar"/>
+        </div></div>
 </form>
 
 <h3 class="text-info">Resultado:</h3>
@@ -84,8 +90,8 @@ $nivel=1;
 	$lr200 = $consulta->fetch(PDO::FETCH_ASSOC);
 		
 if(empty($lr200)){
-	echo '<table width="500" border="1">
-<tr><th align="center" class="alert-success" >Vendas de '.$mes.' de '.$ano.'</th></tr>
+	echo '<table  border="3" class="table table-striped">
+<tr><th class="text-center bg-dark text-white-50" >Vendas de '.$mes.' de '.$ano.'</th></tr>
 <tr><th align="center" class="alert-danger">Nenhuma venda efetuada nesse periodo</th></tr>
 </table>
 ';
@@ -94,8 +100,8 @@ if(empty($lr200)){
 }else{
 echo '
 <h3 class="text-primary">Vendas de '.$mes.' de '.$ano.'</h3>
-<table  border="1" >
-<tr><th align="center" class="alert-success" colspan="2">Ranking de clientes no mes!!!!</th></tr>
+	<table  border="3" class="table table-striped">
+<tr><th class="text-center bg-dark text-white-50" colspan="2">Ranking de clientes no mes!!!!</th></tr>
 <tr>
     <th scope="col">Nome do cliente</th>
     <th scope="col">numero de compras no mes</th>
@@ -111,13 +117,13 @@ echo '
 	
 	foreach($lr2 as $l){
 			
-		$sql4 = "SELECT * FROM clientes WHERE id_clientes = ? ";
-		$consulta4 = $conexao->prepare($sql4);
+	$sql4 = "SELECT * FROM clientes WHERE id_clientes = ? ";
+	$consulta4 = $conexao->prepare($sql4);
         $consulta4->execute(array($l['id_cliente']));
-		$dados_us = $consulta4->fetch(PDO::FETCH_ASSOC);
+	$dados_us = $consulta4->fetch(PDO::FETCH_ASSOC);
 	if($l['q'] >0){	
 	
-	echo '<tr><td align="center">'.$dados_us['nome']	.'</td><td  align="center">'.$l['q'].'</td></tr>'	;
+	echo '<tr><td>'.$dados_us['nome'].'</td><td>'.$l['q'].'</td></tr>'	;
 	}
 	}
 	echo '</table>';

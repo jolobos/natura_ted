@@ -36,9 +36,9 @@ $nivel=1;
 <a href="top10dia.php" class="btn btn-warning">Ranking diario</a>
 <a href="top10mes.php" class="btn btn-warning">Ranking mensal</a>
 <a href="top10ano.php" class="btn btn-warning">Ranking anual</a>
-<a href="ac_ano.php" class="btn btn-primary">acumulado por ano</a>
-<a href="ac_mes.php" class="btn btn-primary">acumulado por mes</a></br></br>
 <a href="ac_dia.php" class="btn btn-primary">acumulado por dia</a>
+<a href="ac_mes.php" class="btn btn-primary">acumulado por mes</a>
+<a href="ac_ano.php" class="btn btn-primary">acumulado por ano</a></br></br>
 
 </br>
 </br>
