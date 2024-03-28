@@ -7,11 +7,12 @@ $produto = $_POST['produto'];
 $quantidade = $_POST['quantidade'];
 $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];
+$status = $_POST['status'];
 require_once ('../database.php');
-		$sql ='INSERT INTO produtos(cod_prod,produto,valor,descricao) values(?,?,?,?)';
+		$sql ='INSERT INTO produtos(cod_prod,produto,quantidade,valor,descricao,status) values(?,?,?,?,?,?)';
 		try {
 		$insercao = $conexao->prepare($sql);
-		$ok = $insercao->execute(array ($cod_prod,$produto,$valor,$descricao));
+		$ok = $insercao->execute(array ($cod_prod,$produto,$quantidade,$valor,$descricao,$status));
 		}catch(PDOException $r){
 			//$msg= 'Problemas com o SGBD.'.$r->getMessage();
 			$ok = False;
@@ -79,15 +80,30 @@ require_once ('../database.php');
 							<input type = "text" name="valor" class="form-control input-md"/>
 						</div>
 					</div>
+                                        <div class="form-group" style="max-width: 500px;margin: auto;" >
+						<label class="col-md-4 control-label">Quantidade: </label>
+						<div>
+							<input type = "text" name="quantidade" class="form-control input-md"/>
+						</div>
+					</div>
 					<div class="form-group" style="max-width: 500px;margin: auto;" >
 						<label class="col-md-4 control-label" >Descricao: </label>
 						<div>
 							<input type = "text" name="descricao" class="form-control input-md"/>
 						</div>
 					</div>
+                                        <div class="form-group" style="max-width: 500px;margin: auto;" >
+						<label class="col-md-4 control-label" >Status: </label>
+						<div class="col-sm-2">
+							<select name="status" class="form-control"> 
+                                                        <option value="1">ativo</option>
+                                                        <option value="0">desativado</option>
+                                                    </select>
+                                                </div>
+					</div>
 					<div class="form-group mt-2 text-center" style="max-width: 500px;margin: auto;" >
 						<div>
-							<button type=submit class=" btn btn-primary">Gravar </button>
+                                              <button type=submit class=" btn btn-primary">Gravar </button>
                             <a class="btn btn-success" href="listagem_p.php">voltar</a>
                              
 						</div>

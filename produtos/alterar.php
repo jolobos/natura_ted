@@ -16,14 +16,16 @@ $dado = $consulta->fetch(PDO::FETCH_ASSOC);
 if(!empty($_POST) ){
 $cod_prod = $_POST['cod_prod'];
 $produto = $_POST['produto'];
+$quantidade = $_POST['quantidade'];
 $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];
+$status = $_POST['status'];
 $id = $_POST['id_produto'];
-		$sql ='UPDATE produtos SET cod_prod=?, produto=?,valor=?,descricao=?
+		$sql ='UPDATE produtos SET cod_prod=?, produto=?,quantidade=?,valor=?,descricao=?,status=?
 		WHERE id_produto=?';
 		try {
 		$insercao = $conexao->prepare($sql);
-		$ok = $insercao->execute(array ($cod_prod,$produto,$valor,$descricao,$id));
+		$ok = $insercao->execute(array ($cod_prod,$produto,$quantidade,$valor,$descricao,$status,$id));
 		}catch(PDOException $r){
 			//$msg= 'Problemas com o SGBD.'.$r->getMessage();
 			$ok = False;
@@ -93,11 +95,26 @@ $id = $_POST['id_produto'];
 							<input type = "text" name="valor" value="<?php echo $dado['valor']; ?>"  class="form-control input-md"/>
 						</div>
 					</div>
+                                        <div class="form-group" style="max-width: 500px;margin: auto;" >
+						<label class="col-md-4 control-label">Quantidade: </label>
+						<div>
+							<input type = "text" name="quantidade" class="form-control input-md" value="<?php echo $dado['quantidade']; ?>"  />
+						</div>
+					</div>
 					<div class="form-group" style="max-width: 500px;margin: auto;" >
 						<label class="col-md-4 control-label" >Descrição: </label>
 						<div>
 							<input type = "text" name="descricao" value="<?php echo $dado['descricao']; ?>"  class="form-control input-md"/>
 						</div>
+					</div>
+                                        <div class="form-group" style="max-width: 500px;margin: auto;" >
+						<label class="col-md-4 control-label" >Status: </label>
+						<div class="col-sm-2">
+							<select name="status" class="form-control"> 
+                                                        <option value="1">ativo</option>
+                                                        <option value="0">desativado</option>
+                                                    </select>
+                                                </div>
 					</div>
 					
 							<input type = "hidden" name="id_produto" value="<?php echo $dado['id_produto'] ;?>" />

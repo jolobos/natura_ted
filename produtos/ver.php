@@ -42,8 +42,14 @@ Ver Produtos				</h1>
 <p>Codigo produto: <?php echo $dado['cod_prod'];?> </p>
 <p>Produto: <?php echo $dado['produto'];?> </p>
 <p>Valor: <?php echo '$ '.$dado['valor'];?> </p>
+<p>Quantidade: <?php echo $dado['quantidade'];?> </p>
 <p>Descricao: <?php echo $dado['descricao'];?> </p>
+<?php if($dado['status'] > 0){ $status = 'ativo'; }else{ $status = 'desativado';} 
+echo '<p>Descricao: '.$status.'</p>
+';
+?>
 
+	  
 <a class="btn btn-success" href = "listagem_p.php">voltar</a>
 
 <hr/>

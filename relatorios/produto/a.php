@@ -1,6 +1,7 @@
 <?php 
-require_once('../../verifica_session.php');
 $nivel=1;
+require_once('../../verifica_session.php');
+
 ?>
 
 <!DOCTYPE html>

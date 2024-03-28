@@ -74,7 +74,12 @@ $id = $_POST['id_produto'];
 <p>Codigo produto: <?php echo $dado['cod_prod'];?> </p>
 <p>Produtos: <?php echo $dado['produto'];?> </p>
 <p>Valor: <?php echo'$ '. $dado['valor'];?> </p>
+<p>Quantidade: <?php echo $dado['quantidade'];?> </p>
 <p>Descrição: <?php echo $dado['descricao'];?> </p>
+<?php if($dado['status'] > 0){ $status = 'ativo'; }else{ $status = 'desativado';} 
+echo '<p>Descricao: '.$status.'</p>
+';
+?>
 <input type="hidden" name="id_produto" value="<?php echo $dado['id_produto'];?>"/>
 <input type ="submit" value="Deletar" class="btn btn-danger"/>
 <a href = "listagem_p.php" class="btn btn-success">voltar</a>

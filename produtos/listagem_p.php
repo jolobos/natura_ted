@@ -63,15 +63,16 @@ if(!empty($_GET['mensagem'])){
   echo '<thead>';
   echo '<tr>';
   
-  echo '<th>codigo do produto</th><th>Produto</th><th>Valor</th><th>Descriçao</th><th>Açoes</th>';
+  echo '<th>codigo do produto</th><th>Produto</th><th>Valor</th><th>quantidade</th><th>Descriçao</th><th>status</th><th>Açoes</th>';
   
   echo '</tr>';
   echo '</thead>';
   echo '<tbody>';
   
   foreach($dados as $d){
-	  echo '<tr><td>'.$d['cod_prod'].'</td><td>'.$d['produto'].'</td><td>$ '.$d['valor'].'</td><td>'.$d['descricao'].
-	  '</td><td><a class="btn btn-success me-2" href = "ver.php?id_produto='.$d['id_produto'].'">ver</a><a class="btn btn-primary me-2" href = "alterar.php?id_produto='.$d['id_produto'].'"> alterar</a><a class="btn btn-danger" href = "deletar.php?id_produto='.$d['id_produto'].'"> deletar</a></td></tr>';
+          if($d['status'] > 0){ $status = 'ativo'; }else{ $status = 'desativado';}
+	  echo '<tr><td>'.$d['cod_prod'].'</td><td>'.$d['produto'].'</td><td>$ '.$d['valor'].'</td><td>'.$d['quantidade'].'</td><td>'.$d['descricao'].
+          '</td><td>'.$status.'</td><td><a class="btn btn-success me-2" href = "ver.php?id_produto='.$d['id_produto'].'">ver</a><a class="btn btn-primary me-2" href = "alterar.php?id_produto='.$d['id_produto'].'"> alterar</a><a class="btn btn-danger" href = "deletar.php?id_produto='.$d['id_produto'].'"> deletar</a></td></tr>';
   }
   
   echo '</tbody>';

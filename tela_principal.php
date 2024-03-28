@@ -51,15 +51,15 @@ if(!empty($_GET)){
 <div align="center">
 
 
-<a class="btn btn-warning" href="clientes/listagem.php">Clientes</a></br></br>
+<a class="btn btn-warning" href="clientes/listagem.php" style="width: 200px; margin: auto;">Clientes</a></br></br>
 
-  <a class="btn btn-warning" href="produtos/listagem_p.php">Produtos</a></br></br>
+  <a class="btn btn-warning" href="produtos/listagem_p.php" style="width: 200px; margin: auto;">Produtos</a></br></br>
 
- <a class="btn btn-warning" href="usuarios/listagem.php">Usuarios</a> </br></br>
+ <a class="btn btn-warning" href="usuarios/listagem.php" style="width: 200px; margin: auto;">Usuarios</a> </br></br>
 
-<a class="btn btn-warning" href="vendas/esc_cl.php">vendas</a> </br></br>
+<a class="btn btn-warning" href="vendas/esc_cl.php" style="width: 200px; margin: auto;">vendas</a> </br></br>
 
-<a class="btn btn-warning" href="relatorios/index.php">relatorios</a></br></br>
+<a class="btn btn-warning" href="relatorios/index.php" style="width: 200px; margin: auto;">relatorios</a></br></br>
   
   <a  class="btn btn-danger" href="sair.php  ">Sair</a></div> 
 
