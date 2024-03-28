@@ -1,11 +1,11 @@
 <?php
-require_once('../relatorios/vendor/autoload.php');
+$nivel=0;
+require_once('../relatorios/pdf/fpdf.php');
 require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=0;
 
 $data=date("Y/m/d H:i:s");
 $data_per = date("Y/m/d");

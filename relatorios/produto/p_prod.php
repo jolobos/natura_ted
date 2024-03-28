@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../../verifica_session.php');
 require_once('../../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -55,11 +55,11 @@ if(!empty($_POST['id_produto'])){
 $lr1 = $_POST['id_produto'];
 $sql1 = "SELECT p.produto,p.valor,COUNT(iv.id_produto) AS quan,SUM(iv.quantidade) AS q,
 	(p.valor * SUM(iv.quantidade)) AS r
-FROM itens_venda iv
-left join produtos p
-on p.id_produto = iv.id_produto
-WHERE iv.id_produto = ?
-GROUP BY iv.id_produto ";
+	FROM itens_venda iv
+	left join produtos p
+	on p.id_produto = iv.id_produto
+	WHERE iv.id_produto = ?
+	GROUP BY iv.id_produto LIMIT 0,10";
 	$consulta1 = $conexao->prepare($sql1);
 	$consulta1->execute(array($lr1));
 	$lr3 = $consulta1->fetch(PDO::FETCH_ASSOC);
@@ -75,8 +75,8 @@ echo '<a class="alert alert-danger">Lamento mas seu produto não possui nenhuma 
 		
 
 	echo '<h3 class="text-primary">Vendas por produto </h3>
-<table  border="1" align="center">
-<tr><th align="center" class="alert-success" colspan="7">Pesquisa de vendas por produto!!!!</th></tr>
+<table  border="3" class="table table-striped" >
+<tr><th class="text-center bg-dark text-white-50" colspan="7">Pesquisa de vendas por produto!!!!</th></tr>
 <tr>
     <th scope="col">Nome do produto</th>
     <th scope="col">quantidade vendida</th>
@@ -116,9 +116,9 @@ foreach($lr2 as $l1){
 	
 
 	
-			echo '<tr><td align="center">'.$l1['produto']	.'</td><td  align="center">'.$l1['q'].'</td>
-			<td  align="center">$ '.$l1['valor'].'</td><td  align="center">$ '.number_format($vlr_somado,2).'</td>
-			<td  align="center">$ '.number_format($soma_total,2).'</td>
+			echo '<tr><td>'.$l1['produto']	.'</td><td>'.$l1['q'].'</td>
+			<td>$ '.$l1['valor'].'</td><td>$ '.number_format($vlr_somado,2).'</td>
+			<td>$ '.number_format($soma_total,2).'</td>
 			</tr>';
 
 	

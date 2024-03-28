@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../../verifica_session.php');
 require_once('../../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 

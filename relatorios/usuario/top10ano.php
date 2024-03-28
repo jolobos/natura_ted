@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../../verifica_session.php');
 require_once('../../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -40,9 +40,9 @@ $nivel=1;
     <div class="col-sm-1">
 <select name="ano" class="label-success form-control">
 <option value="">ANO</option>
-<option value="2015">2015</option>
-<option value="2016">2016</option>
-<option value="2017">2017</option>
+<option value="2023">2023</option>
+<option value="2024">2024</option>
+<option value="2025">2025</option>
 </select>    </div>
     <div class="col-sm-2">
 <input type="submit" class="btn btn-success" value="pesquisar"/>

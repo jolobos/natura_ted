@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../../verifica_session.php');
 require_once('../../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -35,15 +35,17 @@ $nivel=1;
 </br>
 <div>
 <form action="top10ano.php" method="post">
-
-<select name="ano" class="label-success">
+<div class="row">
+<div class="col-sm-1">
+<select name="ano" class="label-success form-control">
 <option value="">ANO</option>
-<option value="2015">2015</option>
-<option value="2016">2016</option>
-<option value="2017">2017</option>
-</select>
+<option value="2023">2023</option>
+<option value="2024">2024</option>
+<option value="2025">2025</option>
+</select></div>
+<div class="col-sm-2">
 <input type="submit" class="btn btn-success" value="pesquisar"/>
-</form>
+</div></div></form>
 
 <h3 class="text-info">Resultado:</h3>
 </br>
@@ -69,8 +71,8 @@ $nivel=1;
 	$lr200 = $consulta->fetchALL(PDO::FETCH_ASSOC);
 		
 if(empty($lr200)){
-	echo '<table width="500" border="1">
-<tr><th align="center" class="alert-success" >Vendas de '.$ano.'</th></tr>
+	echo '<table class="table table-striped" border="3">
+<tr><th class="text-center bg-dark text-white-50" >Vendas de '.$ano.'</th></tr>
 <tr><th align="center" class="alert-danger">Nenhuma venda efetuada nesse periodo</th></tr>
 </table>
 ';
@@ -82,8 +84,8 @@ if(empty($lr200)){
 	
 	
 echo '<h3 class="text-primary">Vendas de '.$dt_inicio2.' até '.$dt_final2.' </h3>
-<table  border="1" align="center">
-<tr><th align="center" class="alert-success" colspan="7">Ranking de produtos no ano!!!!</th></tr>
+<table class="table table-striped" border="3">
+<tr><th class="text-center bg-dark text-white-50" colspan="7">Ranking de produtos no ano!!!!</th></tr>
 <tr>
     <th scope="col">Nome do produto</th>
     <th scope="col">quantidade vendida</th>
@@ -126,11 +128,11 @@ foreach($lr2 as $l1){
 	$valor_acumulado2 = $valor_acumulado * 100;
 	$valor_acumulado3 += $valor_acumulado2; 
 	
-			echo '<tr><td align="center">'.$l1['produto']	.'</td><td  align="center">'.$l1['q'].'</td>
-			<td  align="center">$ '.number_format($l1['valor'],2).'</td><td  align="center">$ '.number_format($vlr_somado,2).'</td>
-			<td  align="center">$ '.number_format($soma_total,2).'</td>
-			<td  align="center">'.number_format($valor_acumulado2,2,".",",").'%</td>
-			<td  align="center">'.number_format($valor_acumulado3,2,".",",").'%</td></tr>';
+			echo '<tr><td >'.$l1['produto']	.'</td><td>'.$l1['q'].'</td>
+			<td>$ '.number_format($l1['valor'],2).'</td><td>$ '.number_format($vlr_somado,2).'</td>
+			<td>$ '.number_format($soma_total,2).'</td>
+			<td>'.number_format($valor_acumulado2,2,".",",").'%</td>
+			<td>'.number_format($valor_acumulado3,2,".",",").'%</td></tr>';
 
 	
 	 

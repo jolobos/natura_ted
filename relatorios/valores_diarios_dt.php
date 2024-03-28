@@ -1,15 +1,14 @@
 	<?php
-//require_once('../../verifica_session.php');
+$nivel=1;
+require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
 <!DOCTYPE html>
-<html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
@@ -37,7 +36,9 @@ $nivel=1;
 </br>
 <h3 class="text-info">Digite a data que você deseja pesquisar :</h3>
 <form action="valores_diarios_dt.php" method="post" >
-<select name="mes" class="label-success">
+<div class="row">
+<div class="col-sm-2">
+<select name="mes" class="label-success form-control">
 <option value="" >MES</option>
 <option value="01">janeiro</option>
 <option value="02">fevereiro</option>
@@ -51,14 +52,17 @@ $nivel=1;
 <option value="10">outubro</option>
 <option value="11">novembro</option>
 <option value="12">dezembro</option>
-</select>
-<select name="ano" class="label-success">
+</select></div>
+<div class="col-sm-1">
+
+<select name="ano" class="label-success form-control">
 <option value="">ANO</option>
 <option value="2023">2023</option>
 <option value="2024">2024</option>
 <option value="2025">2025</option>
-</select>
-<input type="submit" class="btn btn-success" value="pesquisar"/>
+</select></div>
+<div class="col-sm-2">
+<input type="submit" class="btn btn-success" value="pesquisar"/></div>
 </form>
 <h3 class="text-info">Totais de vendas por dia	:</h3>
 <div id="resultado">

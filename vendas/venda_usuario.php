@@ -1,10 +1,10 @@
 ﻿<?php
+$nivel=0;
 require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=0;
 
 //$_SESSION['list_prod'];
 
@@ -186,7 +186,7 @@ $sql = "SELECT * FROM produtos LIMIT 0,10";
     <td>'.$produto.'</td>
     <td><input type="text" size="3" name="prod['.$id.']" value="'.$qtd.'"/></td>
     <td>'.$valor.'</td>
-    <td>'.$v_somado.'</td>
+    <td>'.number_format($v_somado,2).'</td>
 	<td><a class="btn btn-success me-2"href="venda_usuario.php?acao=add&id='.$ln['id_produto'].'">+1</a>'
                         /*. '<a class="btn btn-warning me-2"href="venda_usuario.php?acao=del1&id='.$ln['id_produto'].'">-1</a>'
                         */. '<a class="btn btn-danger"href="venda_usuario.php?acao=del&id='.$ln['id_produto']

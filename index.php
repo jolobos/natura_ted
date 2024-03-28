@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
@@ -28,7 +26,7 @@ if(empty($_POST)){
 				$msg= 'Bem vindo!';
 				$_SESSION['usuario'] = $dado['usuario'];
 				$_SESSION['id_usuario'] = $dado['id_user'];
-				$_SESSION['vida'] = 1000								; //segundos
+				$_SESSION['vida'] = 1000	; //segundos
 				$_SESSION['decorrido'] = time();
 				$_SESSION['nivel'] = $dado['nivel'];
 
@@ -69,17 +67,21 @@ sessoes(session)= sao criados e armazenados no servidor. sao arquivos que contem
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style_login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <title>Login</title>
 </head>
 <body>
     <div class="main-login">
-        <div class="left-login">
+		<div class="left-login">
             <h1>Faça login <br> E tenha acesso aos seus serviços</h1>
             <img src="img/login.jpg" alt="" class="image-login">
         </div>
         <form action="index.php" method="post">
         <div class="rigth-login">
             <div class="card-login">
+				      <?php if(!empty($_GET['mens'])){echo '<h3 class="text-danger">'.$_GET['mens'].'</h3>';}?>
+
                 <h1>LOGIN</h1>
                 <div class="textfield">
                     <label for="usuario">Usuário</label>

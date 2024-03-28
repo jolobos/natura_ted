@@ -1,10 +1,10 @@
 	<?php
-//require_once('../../verifica_session.php');
+$nivel=1;
+require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -38,10 +38,15 @@ $nivel=1;
 </br>
 <h3 class="text-info">Digite a data que você deseja pesquisar :</h3>
 <form action="valores_diarios.php" method="post" >
-<input type="date" name="dt_inicio"/>
-<a>até</a>
-<input type="date" name="dt_final"/>
-<input type="submit" class="btn btn-success" value="pesquisar"/>
+<div class="row">
+<div class="col-sm-2">
+<input type="date" name="dt_inicio" class="form-control"/></div>
+<div class="text-center col-sm-1">
+<H5 class="mt-2"> até</H5></div>
+<div class="col-sm-2">
+<input type="date" name="dt_final" class="form-control"/></div>
+<div class="col-sm-2">
+<input type="submit" class="btn btn-success" value="pesquisar"/></div></div>
 </form>
 <h3 class="text-info">Totais de vendas por dia	:</h3>
 <div id="resultado">

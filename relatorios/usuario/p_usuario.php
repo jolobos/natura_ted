@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../../verifica_session.php');
 require_once('../../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -45,18 +45,7 @@ $lr1 = $_POST['id_usuarios'];
 		$sql2 = "SELECT * FROM vendas WHERE id_usuario = ?";
 		$consulta2 = $conexao->prepare($sql2);
         $consulta2->execute(array($lr1));
-	$lr2 = $consulta2->fetch(PDO::FETCH_ASSOC);
 
-if(empty($lr2)){
-	
-	
-echo '
-</br>
-<a class="alert alert-danger">Lamento mas seu usuario não possui nenhuma venda registrada.</a>';
-
-
-	}else{
-	
 echo '<h3 class="text-primary"> Vendas efetuadas pelo usuario: </h3>
 <table  border="3" class="table table-striped">
 <tr>
@@ -93,7 +82,7 @@ echo '<h3 class="text-primary"> Vendas efetuadas pelo usuario: </h3>
 
 }
 
-echo '</table>';}		
+echo '</table>';		
 
 ?>
 </div>

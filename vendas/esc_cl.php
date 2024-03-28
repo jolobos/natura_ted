@@ -1,9 +1,10 @@
 ﻿<?php
+$nivel=0;
 require_once('../verifica_session.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=0;
+
 if(!empty($_SESSION['list_prod'])){
 	unset($_SESSION['list_prod']);
 	

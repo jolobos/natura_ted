@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -31,9 +31,9 @@ $nivel=1;
 <a href="../sair.php" class="btn btn-danger">Sair</a>
 <a href="index.php" class="btn btn-danger">Voltar</a>
 
-<a href="venda/v_anuais.php" class="btn btn-warning">Vendas anuais</a>
-<a href="venda/v_mensais.php" class="btn btn-warning">Vendas mensais</a>
 <a href="venda/v_dia.php" class="btn btn-warning">Vendas do dia</a>
+<a href="venda/v_mensais.php" class="btn btn-warning">Vendas mensais</a>
+<a href="venda/v_anuais.php" class="btn btn-warning">Vendas anuais</a>
 <a href="venda/pes_venda.php" class="btn btn-warning">Pesquisar venda</a>
 
 <h3 class="text-primary">Digite a data que você deseja pesquisar:</h3>
@@ -71,8 +71,8 @@ $dt_final = date_format(new DateTime($_POST['dt_final']."23:59:59" ), "Y/m/d H:i
 
 $sql = "SELECT * FROM vendas WHERE data BETWEEN '".$dt_inicio."' and '".$dt_final."'";
 $consulta = $conexao->query($sql);
-
-
+$lb = $consulta->fetch(PDO::FETCH_ASSOC);
+if(!empty($lb)){
 echo '
 
 <table  border="3" class="table table-striped" >
@@ -82,8 +82,15 @@ echo '
     <th scope="col">nome do vendedor</th>
     <th scope="col">Ações</th>
     
-</tr>';
+</tr>';}else{
+echo'	<table  border="3" class="table table-striped">
+<tr><th class="bg-dark text-white-50 text-center">Vendas de '.date_format(new DateTime($dt_inicio), "d/m/Y").' até '.date_format(new DateTime($dt_final), "d/m/Y").'</th></tr>
+<tr><th align="center" class="alert-danger">Nenhuma venda efetuada nesse periodo</th></tr>
+</table>
+';
+	}
 while($lr = $consulta->fetch(PDO::FETCH_ASSOC)){
+	
 	$id3 = $lr['id_usuario'] ;
 	$id2 = $lr['id_cliente'];
 	

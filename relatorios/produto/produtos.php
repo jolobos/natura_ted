@@ -1,10 +1,10 @@
 <?php
+$nivel=1;
 require_once('../../verifica_session.php');
 require_once('../../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
 
 ?>
 
@@ -39,11 +39,11 @@ $nivel=1;
 </br>
 <div align="center">
 <h3 class="text-primary"> Selecione uma opção:</h3>
-<a href="top10dia.php" class="btn btn-warning" style="width: 200px;margin: auto;">Ranking diario</a></br></br>
-<a href="top10mes.php" class="btn btn-warning" style="width: 200px;margin: auto;">Ranking mensal</a></br></br>
-<a href="top10ano.php" class="btn btn-warning" style="width: 200px;margin: auto;">Ranking anual</a></br></br>
-<a href="p_prod.php" class="btn btn-warning" style="width: 200px;margin: auto;">Pesquisa por produto</a></br></br>
-<a href="curvaABC.php" class="btn btn-warning" style="width: 200px;margin: auto;">Curva ABC</a></br></br>
+<a href="top10dia.php" class="btn btn-secondary" style="width: 200px;margin: auto;">Ranking diario</a></br></br>
+<a href="top10mes.php" class="btn btn-secondary" style="width: 200px;margin: auto;">Ranking mensal</a></br></br>
+<a href="top10ano.php" class="btn btn-secondary" style="width: 200px;margin: auto;">Ranking anual</a></br></br>
+<a href="p_prod.php" class="btn btn-secondary" style="width: 200px;margin: auto;">Pesquisa por produto</a></br></br>
+<a href="curvaABC.php" class="btn btn-secondary" style="width: 200px;margin: auto;">Curva ABC</a></br></br>
 
 </div>
 

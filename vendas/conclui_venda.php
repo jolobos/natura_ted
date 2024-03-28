@@ -1,10 +1,10 @@
 <?php
+$nivel=0;
 require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=0;
 
 ?>
 
@@ -83,7 +83,7 @@ $nivel=0;
     <td>'.$produto.'</td>
     <td>'.$qtd.'</td>
     <td>'.$valor.'</td>
-    <td>'.$v_somado.'</td>
+    <td>'.number_format($v_somado,2).'</td>
   </tr>';
 	  }
 	  
@@ -92,7 +92,7 @@ $nivel=0;
   
   
  
-  echo'<tr><td align="right" colspan="5">Total R$: '.$total.'</td></tr>';
+  echo'<tr><td align="right" colspan="5">Total R$: '.number_format($total,2).'</td></tr>';
 
 
 

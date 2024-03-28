@@ -1,10 +1,11 @@
 <?php
+$nivel=1;
 require_once('../verifica_session.php');
 require_once('../database.php');
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 date_default_timezone_set('America/Sao_Paulo');
-$nivel=1;
+
 
 ?>
 
@@ -33,11 +34,11 @@ $nivel=1;
 <a href="../sair.php" class="btn btn-danger">Sair</a>
 <div align="center">
     <h3 class="text-primary">Escolha uma opção de relatório: </h3></br>
-<a href="vendas.php" class="btn btn-secondary btn-lg">Vendas</a></br></br>
-<a href="cliente/clientes.php" class="btn btn-secondary btn-lg">Clientes</a></br></br>
-<a href="usuario/usuarios.php" class="btn btn-secondary btn-lg">usuarios</a></br></br>
-<a href="produto/produtos.php" class="btn btn-secondary btn-lg">Produtos</a></br></br>
-<a href="valores_diarios.php" class="btn btn-secondary btn-lg">Valores p/ dia</a></br></br>
+<a href="vendas.php" class="btn btn-secondary btn-lg" style="width:200px;margin:auto;">Vendas</a></br></br>
+<a href="cliente/clientes.php" class="btn btn-secondary btn-lg" style="width:200px;margin:auto;">Clientes</a></br></br>
+<a href="usuario/usuarios.php" class="btn btn-secondary btn-lg" style="width:200px;margin:auto;">usuarios</a></br></br>
+<a href="produto/produtos.php" class="btn btn-secondary btn-lg" style="width:200px;margin:auto;">Produtos</a></br></br>
+<a href="valores_diarios.php" class="btn btn-secondary btn-lg" style="width:200px;margin:auto;">Valores p/ dia</a></br></br>
 
 </div>
 <hr/>

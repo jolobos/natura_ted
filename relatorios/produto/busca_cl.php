@@ -2,7 +2,7 @@
 
 require_once("../../database.php");
 $valor = $_GET['valor'];
-$sql = "SELECT * FROM produtos WHERE produto LIKE '%".$valor."%'";
+$sql = "SELECT * FROM produtos WHERE produto LIKE '%".$valor."%' LIMIT 0,5";
 $consulta = $conexao->query($sql);
 //$consulta->execute(array());
 $lr1 = $consulta->fetchALL(PDO::FETCH_ASSOC);
@@ -10,7 +10,7 @@ $lr1 = $consulta->fetchALL(PDO::FETCH_ASSOC);
 
  echo '
  
- <table class = "table-striped" border="1">';
+ <table class = "table table-striped" border="3" style="width: 500px;margin: auto;">';
   echo '<thead>';
   echo '<tr>';
   

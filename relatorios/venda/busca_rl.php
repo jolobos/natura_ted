@@ -9,7 +9,7 @@ $lr1 = $consulta->fetchALL(PDO::FETCH_ASSOC);
 
 header("Content-Type: text/html; charset=ISO-8859-1",true);
 if(!empty($lr1)){echo '
-<table  border="1" align="left">
+<table  border="3" class="table table-striped" >
 <tr>
     
     <th scope="col">nome do cliente </th>
@@ -32,16 +32,16 @@ foreach($lr1 as $lr){
         $consulta4->execute(array($id3));
 		$dados_us = $consulta4->fetch(PDO::FETCH_ASSOC);	
 	
-	echo '<tr><td align="center">'.$cliente.'</td><td  align="center">'.date_format(new DateTime($lr['data']), "d/m/Y H:i:s").'</td>
-	<td  align="center">'.$dados_us['usuario'].'</td><td><form action="../gera_pdf.php" method="post" target="_blank">
+	echo '<tr><td>'.$cliente.'</td><td>'.date_format(new DateTime($lr['data']), "d/m/Y H:i:s").'</td>
+	<td>'.$dados_us['usuario'].'</td><td><form action="../gera_pdf.php" method="post" target="_blank">
 	<input type="hidden" name="id_venda" value="'.$lr['id_venda'].'"/>
 <input class="btn btn-success" type="submit" value="Visualizar"/></form></td></tr>';
 
 }
 
-echo '</table>';}else{
+echo '</table></br>';}else{
 	
-	echo '</br><a class="alert alert-danger">Nenhuma venda efetuada nesse periodo</a>';
+	echo '</br><a class="alert alert-danger">Nenhuma venda efetuada nesse periodo</a></br></br>';
 	
 }
 
