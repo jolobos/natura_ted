@@ -94,7 +94,7 @@ foreach($_SESSION['list_prod'] as $id_p => $quantidade){
     $doc->SetX(145);
     $doc->Cell(40, 10,'R$ '. $vl_prod);   
     $doc->SetX(170);
-    $doc->Cell(40, 10,'R$ '. $v_somado);  
+    $doc->Cell(40, 10,'R$ '.number_format($v_somado,2));  
     $doc->SetX(175);
 }
 $doc->SetY("21");
@@ -102,7 +102,7 @@ $doc->SetX("30");
 $doc->SetY("250");
 $doc->Cell(0,0,'',1,1,'L');
 $doc->Cell(0,10,'Total:',0,0,'L');
-$doc->Cell(0,10,'R$ '.$total,0,1,'R');
+$doc->Cell(0,10,'R$ '.number_format($total,2),0,1,'R');
 $doc->SetY("270");
 $doc->SetFont('arial','',12);
 $doc->Cell(0,0,'',1,1,'L');

@@ -37,7 +37,7 @@ $id_us	= $_SESSION['id_usuario'];
 				
 		$sql = "SELECT id_venda FROM vendas ORDER BY id_venda DESC LIMIT 1";
 		$consulta = $conexao->prepare($sql);
-                $consulta->execute(array());
+        $consulta->execute(array());
 		$lr = $consulta->fetch(PDO::FETCH_ASSOC);
 		$id_venda = $lr['id_venda'];
 
@@ -58,6 +58,40 @@ foreach($_SESSION['list_prod'] as $id => $qtd){
 		}
 			
 }
+
+foreach($_SESSION['list_prod'] as $id => $qtd){
+		$sqla = "SELECT * FROM produtos WHERE id_produto = ?"; 
+		$consulta = $conexao->prepare($sqla);
+        $consulta->execute(array($id));
+		$dados_pr= $consulta->fetch(PDO::FETCH_ASSOC);
+		$quantidade = $dados_pr['quantidade'] - $qtd;
+		
+		$sqlb ='UPDATE produtos SET quantidade=? WHERE id_produto=?';
+		try {
+		$insercao = $conexao->prepare($sqlb);
+		$ok = $insercao->execute(array ($quantidade,$id));
+		}catch(PDOException $r){
+			//$msg= 'Problemas com o SGBD.'.$r->getMessage();
+			$ok = False;
+		}catch (Exception $r){//todos as exce��es
+		$ok= False; 
+			
+		}
+		if($ok){
+		$sqlc = "SELECT * FROM produtos WHERE id_produto = ?"; 
+		$consulta = $conexao->prepare($sqlc);
+        $consulta->execute(array($id));
+		$dados_pra= $consulta->fetch(PDO::FETCH_ASSOC);
+			if($dados_pra['quantidade'] < 1){
+		$status = 0;
+		$sqld ='UPDATE produtos SET status=? WHERE id_produto=?';
+		$insercao = $conexao->prepare($sqld);
+		$ok1 = $insercao->execute(array ($status,$id));
+							
+		}}
+			
+			
+			}
 			}
 
 			

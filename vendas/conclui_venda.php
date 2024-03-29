@@ -42,7 +42,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 
 
-<table style=" width:700px" border="3" class="table table-bordered" align="center">
+<table style=" width:800px" border="3" class="table table-bordered" align="center">
 
 <tr>
 <td align="center" colspan="5" class="text-white-50 bg-dark"> Produtos Selecionados</td>
@@ -51,9 +51,9 @@ date_default_timezone_set('America/Sao_Paulo');
 
 
   <tr>
-    <th width="100" scope="col">cod. prod</th>
+    <th scope="col">codigo do produto</th>
     <th scope="col">produto</th>
-    <th scope="col">quant</th>
+    <th scope="col">quantidade</th>
     <th scope="col">valor</th>
      <th scope="col">vlr somado</th>
       

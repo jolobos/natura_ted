@@ -64,7 +64,7 @@ echo '
 	 <th scope="col">Ações</th>
   </tr>';
   while($lr = $consulta->fetch(PDO::FETCH_ASSOC)){
-	echo '<tr><td>Nome: '.$lr['nome'].'</td><td> CPF: '.$lr['CPF'].'</td><td> Telefone: '.$lr['telefone'].' </td><td>E-mail: '.$lr['email'].'</td><td>Endereço: '.$lr['endereco'].'</td><td><a class="btn btn-success" href="esc_cl.php?act_cl=add_cl&id_clientes='.$lr['id_clientes'].'">Selecionar</a></td></tr>';}
+	echo '<tr><td>'.$lr['nome'].'</td><td>'.$lr['CPF'].'</td><td>'.$lr['telefone'].' </td><td>'.$lr['email'].'</td><td>'.$lr['endereco'].'</td><td><a class="btn btn-success" href="esc_cl.php?act_cl=add_cl&id_clientes='.$lr['id_clientes'].'">Selecionar</a></td></tr>';}
 	echo '</table></hr></div>
 
 	

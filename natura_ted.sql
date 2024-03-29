@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Mar-2024 às 04:40
+-- Generation Time: 29-Mar-2024 às 04:21
 -- Versão do servidor: 10.1.36-MariaDB
 -- versão do PHP: 7.0.32
 
@@ -63,7 +63,12 @@ CREATE TABLE `itens_venda` (
 --
 
 INSERT INTO `itens_venda` (`id_it_venda`, `id_venda`, `id_produto`, `quantidade`, `data_prod`) VALUES
-(57, 222, 12, 1, '2024-03-28 00:28:03');
+(57, 222, 12, 1, '2024-03-28 00:28:03'),
+(58, 223, 12, 1, '2024-03-28 21:44:18'),
+(59, 223, 15, 1, '2024-03-28 21:44:18'),
+(60, 224, 14, 3, '2024-03-28 21:58:53'),
+(61, 225, 14, 1, '2024-03-28 22:16:01'),
+(62, 226, 14, 3, '2024-03-28 22:30:08');
 
 -- --------------------------------------------------------
 
@@ -75,17 +80,20 @@ CREATE TABLE `produtos` (
   `id_produto` int(11) NOT NULL,
   `cod_prod` bigint(25) NOT NULL,
   `produto` varchar(100) NOT NULL,
-  `quantidade` double(6,2) NOT NULL,
-  `valor` double(6,2) NOT NULL,
-  `descricao` varchar(150) NOT NULL
+  `quantidade` double(10,2) NOT NULL,
+  `valor` double(10,2) NOT NULL,
+  `descricao` varchar(150) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id_produto`, `cod_prod`, `produto`, `quantidade`, `valor`, `descricao`) VALUES
-(12, 102111001, 'nome-do-produto', 0.00, 0.50, 'adicione uma descriÃ§Ã£o rapida.');
+INSERT INTO `produtos` (`id_produto`, `cod_prod`, `produto`, `quantidade`, `valor`, `descricao`, `status`) VALUES
+(12, 102111001, 'nome-do-produto', 3.00, 0.50, 'adicione uma descriÃ§Ã£o rapida.', 1),
+(14, 111, 'produto-status-0', 0.00, 11.00, 'adicione uma descriÃ§Ã£o rapida.', 0),
+(15, 11111, 'produto-status-1', 11.00, 1111.00, 'adicione uma descriÃ§Ã£o rapida.', 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +127,7 @@ CREATE TABLE `vendas` (
   `data` datetime NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `total` double(6,2) NOT NULL,
+  `total` double(11,2) NOT NULL,
   `data_periodo` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -128,7 +136,11 @@ CREATE TABLE `vendas` (
 --
 
 INSERT INTO `vendas` (`id_venda`, `data`, `id_cliente`, `id_usuario`, `total`, `data_periodo`) VALUES
-(222, '2024-03-28 00:28:03', 11, 2, 0.50, '2024-03-28 00:00:00');
+(222, '2024-03-28 00:28:03', 11, 2, 0.50, '2024-03-28 00:00:00'),
+(223, '2024-03-28 21:44:18', 11, 2, 1111.50, '2024-03-28 00:00:00'),
+(224, '2024-03-28 21:58:53', 11, 2, 33.00, '2024-03-28 00:00:00'),
+(225, '2024-03-28 22:16:01', 11, 2, 11.00, '2024-03-28 00:00:00'),
+(226, '2024-03-28 22:30:08', 11, 2, 33.00, '2024-03-28 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -178,13 +190,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT for table `itens_venda`
 --
 ALTER TABLE `itens_venda`
-  MODIFY `id_it_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_it_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
@@ -196,7 +208,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
